@@ -1,1 +1,5 @@
-<p>dashboard-page works!</p>
+@for (book of books(); track book.isbn) {
+    <app-book-card [book]="book" (rateUp)="doRateUp(book)" (rateDown)="doRateDown(book)"></app-book-card>
+} @empty {     
+    <p>No books available!</p>
+}
