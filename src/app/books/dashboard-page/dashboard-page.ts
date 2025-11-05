@@ -52,7 +52,6 @@ export class DashboardPage {
   }
 
   doRateUp(book: Book) {
-    console.log('Rating up book: ', book);
     this.books.update(books => {
       let foundBook = books.find( b => b.isbn === book.isbn)
       if (foundBook) {
@@ -63,7 +62,6 @@ export class DashboardPage {
   }
   
   doRateDown(book: Book) {
-    console.log('Rating down book: ', book);
     this.books.update(books => {
       let foundBook = books.find( b => b.isbn === book.isbn)
       if (foundBook) {
