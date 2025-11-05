@@ -9,5 +9,4 @@ import { DashboardPage } from "./books/dashboard-page/dashboard-page";
   styleUrl: './app.scss'
 })
 export class App {
-  protected readonly title = signal('Book Rating!');
 }

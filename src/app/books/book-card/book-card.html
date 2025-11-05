@@ -6,6 +6,7 @@
       <h2>
         {{ book().title }}
         <app-rating-display [rating]="book().rating"></app-rating-display>
+        {{ book().rating | starRating }}
       </h2>
     </div>
     <p>{{ book().description }}</p>

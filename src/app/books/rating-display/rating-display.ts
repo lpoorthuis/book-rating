@@ -12,5 +12,4 @@ export class RatingDisplay {
   starRating(): string {
     return '★'.repeat(this.rating()) + '☆'.repeat(5 - this.rating());
    }
-
 }
