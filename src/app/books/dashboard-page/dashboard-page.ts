@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
-import { Book } from '../models/book';
+import { Book } from '../shared/book';
 import { BookCard } from '../book-card/book-card';
+import { BookRatingHelper } from '../shared/book-rating-helper';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -10,6 +11,7 @@ import { BookCard } from '../book-card/book-card';
 })
 export class DashboardPage {
   protected readonly books = signal<Book[]>([])
+  protected readonly bookRatingHelper = new BookRatingHelper();
 
   constructor() {
     this.books.set([
@@ -55,7 +57,7 @@ export class DashboardPage {
     this.books.update(books => {
       let foundBook = books.find( b => b.isbn === book.isbn)
       if (foundBook) {
-        foundBook.rating = Math.min(5, foundBook.rating + 1);
+        foundBook = this.bookRatingHelper.rateUp(foundBook);
       }
       return books;
   });
@@ -65,7 +67,7 @@ export class DashboardPage {
     this.books.update(books => {
       let foundBook = books.find( b => b.isbn === book.isbn)
       if (foundBook) {
-        foundBook.rating = Math.max(1, foundBook.rating - 1);
+        foundBook = this.bookRatingHelper.rateDown(foundBook);
       }
       return books;
   });
