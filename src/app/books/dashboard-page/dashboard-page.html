@@ -1,6 +1,10 @@
+<h1>List of {{ books().length }} Books</h1>
 @for (book of books(); track book.isbn) {
-    <h1>List of {{ books().length }} Books</h1>
-    <app-book-card [book]="book" (rateUp)="doRateUp(book)" (rateDown)="doRateDown(book)"></app-book-card>
-} @empty {     
-    <h1>No books available!</h1>
+<app-book-card
+  [book]="book"
+  (rateUp)="doRateUp(book)"
+  (rateDown)="doRateDown(book)"
+></app-book-card>
+} @empty {
+<h1>No books available!</h1>
 }

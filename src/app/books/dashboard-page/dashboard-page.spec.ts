@@ -4,26 +4,31 @@ import { DashboardPage } from './dashboard-page';
 import { provideZonelessChangeDetection } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookRatingHelper } from '../shared/book-rating-helper';
+import { BookStore } from '../shared/book-store';
+import { of } from 'rxjs';
 
 describe('DashboardPage', () => {
   let component: DashboardPage;
   let fixture: ComponentFixture<DashboardPage>;
 
   beforeEach(async () => {
-
     const ratingHelperMock = {
-      rateUp : (b: Book) => b,
-      rateDown : (b: Book) => b,
+      rateUp: (b: Book) => b,
+      rateDown: (b: Book) => b,
+    };
+
+    const bookStoreMock = {
+      getBooks: () => of([]),
     }
 
     await TestBed.configureTestingModule({
       imports: [DashboardPage],
       providers: [
         provideZonelessChangeDetection(),
-        { provide: BookRatingHelper, useValue: ratingHelperMock},
-      ]
-    })
-    .compileComponents();
+        { provide: BookRatingHelper, useValue: ratingHelperMock },
+        { provide: BookStore, useValue: bookStoreMock},
+      ],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(DashboardPage);
     component = fixture.componentInstance;
@@ -41,8 +46,8 @@ describe('DashboardPage', () => {
 
     const testBook = { isbn: '123' } as Book;
 
-    component.doRateUp(testBook)
+    component.doRateUp(testBook);
 
-    expect(helper.rateUp).toHaveBeenCalled()
+    expect(helper.rateUp).toHaveBeenCalled();
   });
 });
