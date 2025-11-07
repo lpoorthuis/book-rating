@@ -11,11 +11,10 @@ import { BookStore } from '../shared/book-store';
   styleUrl: './dashboard-page.scss',
 })
 export class DashboardPage {
-  
   #bookRatingHelper = inject(BookRatingHelper);
-  #store = inject(BookStore)
-  
-  protected readonly books = this.#store.getAllResources()
+  #store = inject(BookStore);
+
+  protected readonly books = this.#store.getAllResources();
 
   constructor() {
     //#his.#store.getAllResources().reload(receivedBooks => this.books.set(receivedBooks));
@@ -23,17 +22,17 @@ export class DashboardPage {
 
   doRateUp(book: Book) {
     const ratedBook = this.#bookRatingHelper.rateUp(book);
-    this.#updateBooks(ratedBook)
+    this.#updateBooks(ratedBook);
   }
-  
+
   doRateDown(book: Book) {
     const ratedBook = this.#bookRatingHelper.rateDown(book);
-    this.#updateBooks(ratedBook)
+    this.#updateBooks(ratedBook);
   }
 
   #updateBooks(book: Book) {
-    this.books.update(books => {
-      return books.map(mappedBook => mappedBook.isbn == book.isbn ? book : mappedBook)
+    this.books.update((books) => {
+      return books.map((mappedBook) => (mappedBook.isbn == book.isbn ? book : mappedBook));
     });
   }
 }

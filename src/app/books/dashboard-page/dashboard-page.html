@@ -3,7 +3,7 @@
 <p><strong>Resource Status: </strong> {{ books.status() }}</p>
 
 <p>
-    <button type="button" class="btn btn-green" (click)="books.reload()">Reload</button>
+  <button type="button" class="btn btn-green" (click)="books.reload()">Reload</button>
 </p>
 
 @for (book of books.value(); track book.isbn) {

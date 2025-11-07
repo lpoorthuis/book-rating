@@ -1,0 +1,8 @@
+@if(book(); as b) {
+<div class="card mb-4">
+  <p>Details for Book: {{ b.title }}</p>
+
+  <a routerLink="/books">Zum Dashboard</a><br />
+  <a routerLink="/books/9783864904523">Anders Buch</a>
+</div>
+}

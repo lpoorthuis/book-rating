@@ -15,19 +15,16 @@ export class BookStore {
   }
 
   getAllResources(): HttpResourceRef<Book[]> {
-    return httpResource<Book[]>(
-      () => `${this.#apiUrl}/books`,
-      { defaultValue: [] }
-    )
+    return httpResource<Book[]>(() => `${this.#apiUrl}/books`, { defaultValue: [] });
   }
 
   getBook(isbn: string): Observable<Book> {
     return this.#http.get<Book>(`${this.#apiUrl}/books/${isbn}`).pipe(
-      switchMap(response => {
+      switchMap((response) => {
         if (response == undefined) {
           throw new Error('no bueno');
         } else {
-          return of(response)
+          return of(response);
         }
       })
     );
