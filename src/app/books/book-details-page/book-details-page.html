@@ -1,8 +1,9 @@
 @if(book(); as b) {
 <div class="card mb-4">
-  <p>Details for Book: {{ b.title }}</p>
+  <h2>{{ b.title }}</h2>
+  <p>{{ b.description }}</p>
 
   <a routerLink="/books">Zum Dashboard</a><br />
-  <a routerLink="/books/9783864904523">Anders Buch</a>
+  <a routerLink="/books/9783864904523">Anderes Buch</a>
 </div>
 }
