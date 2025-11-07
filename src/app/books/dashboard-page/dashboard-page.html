@@ -1,5 +1,12 @@
-<h1>List of {{ books().length }} Books</h1>
-@for (book of books(); track book.isbn) {
+<h1>List of {{ books.value().length }} Books</h1>
+
+<p><strong>Resource Status: </strong> {{ books.status() }}</p>
+
+<p>
+    <button type="button" class="btn btn-green" (click)="books.reload()">Reload</button>
+</p>
+
+@for (book of books.value(); track book.isbn) {
 <app-book-card
   [book]="book"
   (rateUp)="doRateUp(book)"

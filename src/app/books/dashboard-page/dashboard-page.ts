@@ -11,13 +11,14 @@ import { BookStore } from '../shared/book-store';
   styleUrl: './dashboard-page.scss',
 })
 export class DashboardPage {
-  protected readonly books = signal<Book[]>([])
   
   #bookRatingHelper = inject(BookRatingHelper);
   #store = inject(BookStore)
+  
+  protected readonly books = this.#store.getAllResources()
 
   constructor() {
-    this.#store.getBooks().subscribe(receivedBooks => this.books.set(receivedBooks));
+    //#his.#store.getAllResources().reload(receivedBooks => this.books.set(receivedBooks));
   }
 
   doRateUp(book: Book) {

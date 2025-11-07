@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Book } from './book';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, httpResource, HttpResourceRef } from '@angular/common/http';
 import { Observable, of, switchMap } from 'rxjs';
 
 @Injectable({
@@ -12,6 +12,13 @@ export class BookStore {
 
   getBooks(): Observable<Book[]> {
     return this.#http.get<Book[]>(`${this.#apiUrl}/books`);
+  }
+
+  getAllResources(): HttpResourceRef<Book[]> {
+    return httpResource<Book[]>(
+      () => `${this.#apiUrl}/books`,
+      { defaultValue: [] }
+    )
   }
 
   getBook(isbn: string): Observable<Book> {
